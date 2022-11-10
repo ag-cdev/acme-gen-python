@@ -52,6 +52,7 @@ def main():
     if client.check_dns_propagation(timeout=12000):
         client.request_certificate()
         save_certificate(args.cert_file, client.certificate)
+        call_dns.delete_dns_record(root_domain, token)
     else:
         client.deactivate_account()
         print("Failed to issue certificate for " + str(client.domains))
